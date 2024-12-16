@@ -14,6 +14,13 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
+// Call the function to connect to the MongoDB
+databaseConnection().then(async () => {
+    await createAdmin(); 
+}).catch(err => {
+    console.error('Error creating the admin', err);
+});
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Server running in port: ${port}`);
