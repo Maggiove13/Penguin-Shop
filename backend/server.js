@@ -25,6 +25,8 @@ databaseConnection().then(async () => {
 app.use(express.json());
 //Config to process html requests
 app.use(express.urlencoded({extended: true}));
+// Config to handle the routes of images or css files
+app.use(express.static(path.join(__dirname, 'public')));
 
 const port = process.env.PORT;
 app.listen(port, () => {
