@@ -28,6 +28,18 @@ app.use(express.urlencoded({extended: true}));
 // Config to handle the routes of images or css files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Config express-session
+app.use(session({
+    key: "session_id",
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+}));
+
+
+
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Server running in port: ${port}`);
