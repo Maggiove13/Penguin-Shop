@@ -16,7 +16,7 @@ router.post('/orders/updateStatus/:id', authorization, adminMiddleware, updateSt
 router.get('/', renderIndexPage);
 router.get('/login', renderLoginPage);
 router.get('/login/dashboard', authorization, adminMiddleware, getDashboard);
-
+router.get('/products', authorization, adminMiddleware, getProducts);
 
 
 
