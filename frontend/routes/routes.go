@@ -13,5 +13,6 @@ func Routes(route *gin.Engine) {
 	})
 
 	route.GET("/products", controllers.GetProduct)
+	route.GET("/products/order", controllers.ShowOrderForm)
 
 }
