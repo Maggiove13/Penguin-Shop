@@ -85,3 +85,18 @@ exports.updateProduct = async (req, res) => {
         res.status(500).send("Error updating product.");
     }
 };
+
+
+exports.renderEditProduct = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const product = await Product.findById(id);
+        if (!product) {
+            return res.status(404).send("Product not found.");
+        }
+        res.render("editProduct", { product });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product.");
+    }
+};
