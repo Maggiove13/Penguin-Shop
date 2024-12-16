@@ -52,4 +52,17 @@ exports.createProduct = async (req, res) => {
 };
 
 
+exports.deleteProduct = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const deletedProduct = await Product.findByIdAndDelete(id);
+        if (!deletedProduct) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        res.redirect('/products');
+    } catch (error) {
+        console.error("Error while deleting the product:", error.message);
+        res.status(500).json({ error: 'Error while deleting the product', message: error.message });
+    }
+};
 
