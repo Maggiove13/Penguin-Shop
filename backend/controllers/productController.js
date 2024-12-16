@@ -16,5 +16,40 @@ exports.getProducts = async (req, res) => {
 };
 
 
+exports.createProduct = async (req, res) => {
+    const { productName, productDescription, productImage, stock, price } = req.body;
+
+    try {
+        // Validación de campos requeridos
+        if (!productName || !productDescription || !productImage || !stock || !price) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // Conversión de tipos de datos
+        const stockInt = parseInt(stock);
+        const priceInt = parseInt(price);
+
+        // Validación de tipos de datos
+        if (isNaN(stockInt) || isNaN(priceInt)) {
+            return res.status(400).json({ message: "Stock and price must be numbers" });
+        }
+
+        // Creación del nuevo producto
+        const newProduct = await Product.create({
+            productName: productName,
+            productDescription: productDescription,
+            productImage: productImage,
+            stock: stockInt,
+            price: priceInt
+        });
+
+        // Redirección o respuesta de éxito
+        res.redirect('/products');
+    } catch (error) {
+        console.error("Error creating product:", error.message);
+        res.status(500).json({ error: 'Error creating product', message: error.message });
+    }
+};
+
 
 
