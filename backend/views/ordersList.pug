@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Orders List
+    link(rel="stylesheet" href="/css/styles.css")
+  body
+    include partials/header
+    block content
+    h1 Orders
+    table.order-table
+      thead
+        tr
+          th Product Name
+          th Image
+          th Stock Product
+          th Client Name
+          th Client Email
+          th Address
+          th Status
+          th Ordered Quantity
+      tbody
+        each order in orders
+          tr
+            td= order.productName
+            td
+              img(src=order.productImage, alt=order.productName, width="100")
+            td= order.stock
+            td= order.clientName
+            td= order.clientEmail
+            td= order.address
+            td
+              form(action=`/orders/updateStatus/${order._id}` method="POST")
+                select(name="status")
+                  option(value="Pending" selected=(order.status === 'Pending')) Pending
+                  option(value="Delivered" selected=(order.status === 'Delivered')) Delivered
+                  p= order.status
+                button(type="submit") Update
+                
+            td= order.quantityOrdered
