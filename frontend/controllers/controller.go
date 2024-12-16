@@ -65,7 +65,6 @@ func GetProduct(c *gin.Context) {
 	c.HTML(http.StatusOK, "products.html", gin.H{"products": products})
 }
 
-
 // CreateOrder maneja la ruta POST /products/order
 func CreateOrder(c *gin.Context) {
 	// Obtener datos del producto
@@ -178,5 +177,30 @@ func CreateOrder(c *gin.Context) {
 	c.HTML(http.StatusOK, "orderSuccess.html", gin.H{
 		"order":   newOrder,
 		"orderID": orderID,
+	})
+}
+
+// ShowOrderSuccess maneja la ruta GET /products/add
+func ShowOrderSuccess(c *gin.Context) {
+	// Obtener el ID de la orden desde la URL
+	orderID := c.Param("id")
+	objectID, err := primitive.ObjectIDFromHex(orderID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID de orden inválido"})
+		return
+	}
+
+	// Buscar la orden en la base de datos
+	collection := database.MongoClient.Database("onlineShopp").Collection("orders")
+	var order models.Order
+	err = collection.FindOne(context.TODO(), bson.M{"_id": objectID}).Decode(&order)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Orden no encontrada"})
+		return
+	}
+
+	// Renderizar la página de éxito con los detalles de la orden
+	c.HTML(http.StatusOK, "orderSuccess.html", gin.H{
+		"order": order,
 	})
 }
