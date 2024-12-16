@@ -19,8 +19,9 @@ router.get('/login/dashboard', authorization, adminMiddleware, getDashboard);
 router.get('/products', authorization, adminMiddleware, getProducts);
 router.get('/products/add', authorization, adminMiddleware, renderAddProduct);
 router.get('/products/edit/:id', authorization, adminMiddleware, renderEditProduct);
-router.get('/orders', authorization, adminMiddleware, getAllOrders);
 
+router.get('/orders', authorization, adminMiddleware, getAllOrders);
+router.get('/orders/status/:id', authorization, adminMiddleware, getAllOrders);
 
 
 module.exports = router;
