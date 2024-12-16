@@ -37,8 +37,8 @@ app.use(session({
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
 }));
 
-
-
+//Config the router
+app.use(router);
 
 const port = process.env.PORT;
 app.listen(port, () => {
