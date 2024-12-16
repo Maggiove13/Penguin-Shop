@@ -7,6 +7,7 @@ const { getAllOrders, updateStatus } = require('../controllers/orderController')
 
 router.post('/login', loginAdmin);
 router.post('/logout', logout);
+router.post('/products/create', authorization, adminMiddleware, createProduct);
 
 
 
