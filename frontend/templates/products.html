@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <ul>
+        {{range .products}}
+            <li>
+                <strong>{{.ProductName}}</strong><br>
+                <p>Description:</p>
+                {{.ProductDescription}}<br>
+                Precio: {{.Price}}<br>
+                Stock: {{.Stock}}<br>
+                <img src="{{.ProductImage}}" alt="{{.ProductName}}" width="100"><br>
+                <form action="/products/order" method="get">
+                    <input type="hidden" name="productName" value="{{.ProductName}}">
+                    <input type="hidden" name="productImage" value="{{.ProductImage}}">
+                    <input type="hidden" name="stock" value="{{.Stock}}">
+                    <button type="submit">Order this product</button>
+                </form>
+            </li>
+        {{end}}
+    </ul>
+    <a href="/">Volver al Inicio</a>
+</body>
+</html>
