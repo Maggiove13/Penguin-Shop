@@ -17,7 +17,7 @@ router.get('/', renderIndexPage);
 router.get('/login', renderLoginPage);
 router.get('/login/dashboard', authorization, adminMiddleware, getDashboard);
 router.get('/products', authorization, adminMiddleware, getProducts);
-
+router.get('/products/add', authorization, adminMiddleware, renderAddProduct);
 
 
 
