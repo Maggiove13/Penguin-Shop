@@ -1,0 +1,26 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Update Product
+    body
+    include partials/header
+    block content
+        h2 Edit
+        form(action=`/products/edit/${product._id}` method="POST")
+                    label(for="productName") Product Name:
+                    input(type="text" id="productName" value= product.productName name="productName" required)
+                    br
+                    label(for="productDescription") Product Description:
+                    input(type="text" id="productDescription" value= product.productDescription name="productDescription" required)
+                    br
+                    label(for="productImage") Product Image URL:
+                    input(type="text" id="productImage" value= product.productImage name="productImage" required)
+                    br
+                    label(for="stock") Stock:
+                    input(type="number" id="stock" value= product.stock name="stock" required)
+                    br
+                    label(for="price") Price: $
+                    input(type="number" id="price" value=product.price name="price" required)
+                    br
+                    button(type="submit") Update
