@@ -52,6 +52,11 @@ exports.createProduct = async (req, res) => {
 };
 
 
+exports.renderAddProduct = (req, res) => {
+    res.render('addProducts');
+}
+
+
 exports.deleteProduct = async (req, res) => {
     const { id } = req.params;
     try {
