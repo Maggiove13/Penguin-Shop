@@ -204,3 +204,21 @@ func ShowOrderSuccess(c *gin.Context) {
 		"order": order,
 	})
 }
+
+// ShowOrderForm maneja la ruta GET /products/order
+func ShowOrderForm(c *gin.Context) {
+	productName := c.Query("productName")
+	productImage := c.Query("productImage")
+	stockStr := c.Query("stock")
+
+	if stockStr == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "stock is missing from getForm"})
+		return
+	}
+
+	c.HTML(http.StatusOK, "orders.html", gin.H{
+		"productName":  productName,
+		"productImage": productImage,
+		"stock":        stockStr,
+	})
+}
