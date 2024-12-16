@@ -14,6 +14,7 @@ router.post('/orders/updateStatus/:id', authorization, adminMiddleware, updateSt
 
 //Views
 router.get('/', renderIndexPage);
+router.get('/login', renderLoginPage);
 
 
 
