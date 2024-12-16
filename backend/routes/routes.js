@@ -6,7 +6,7 @@ const { getProducts, createProduct, renderAddProduct, deleteProduct, updateProdu
 const { getAllOrders, updateStatus } = require('../controllers/orderController');
 
 router.post('/login', loginAdmin);
-
+router.post('/logout', logout);
 
 
 
