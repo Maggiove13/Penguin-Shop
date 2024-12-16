@@ -23,8 +23,8 @@ databaseConnection().then(async () => {
 
 //Config to read json
 app.use(express.json());
-
-
+//Config to process html requests
+app.use(express.urlencoded({extended: true}));
 
 const port = process.env.PORT;
 app.listen(port, () => {
