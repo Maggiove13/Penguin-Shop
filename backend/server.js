@@ -21,6 +21,11 @@ databaseConnection().then(async () => {
     console.error('Error creating the admin', err);
 });
 
+//Config to read json
+app.use(express.json());
+
+
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Server running in port: ${port}`);
