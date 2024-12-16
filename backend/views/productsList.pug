@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+    head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Products List
+    link(rel="stylesheet" href="/css/styles.css")
+    body
+    include partials/header
+    block content
+    h1 Products List
+    ul
+        .product-container
+            each product in products
+                .product-card
+                    ol 
+                        h3= product.productName
+                            p= product.productDescription
+                            input(type="hidden" name="productId" value=product._id)
+                            img(src=product.productImage, alt=product.productName, width="100")
+                            p Stock: #{product.stock}
+                            p Price: $#{product.price} 
+                            form(action=`/products/${product._id}` method="POST")
+                                button(type="submit") Delete
+                            form(action=`/products/edit/${product._id}` method="GET")
+                                button(type="submit") edit
+        a(href="/products/add") Add a new product
+
