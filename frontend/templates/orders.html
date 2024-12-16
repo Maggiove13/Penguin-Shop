@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orden del Producto</title>
+</head>
+<body>
+    <ul>
+        <li>
+            <div>
+                <h3>Detalles del Producto a Ordenar</h3>
+                <p>{{.productName}}</p>
+                <img src="{{.productImage}}" alt="{{.productName}}" width="100"><br>
+            </div>
+            <div>
+                <h2>Complete su Información para Finalizar la Orden</h2>
+                <form action="/products/order" method="post">
+                    <input type="hidden" name="productName" value="{{.productName}}">
+                    <input type="hidden" name="productImage" value="{{.productImage}}">
+                    <input type="hidden" name="stock" value="{{.stock}}">
+
+                    <label for="quantityOrdered">Cantidad a ordenar:</label>
+                    <input type="number" name="quantityOrdered" placeholder="Cantidad" required min="1">
+            
+                    <label for="clientName">Nombre:</label>
+                    <input type="text" id="clientName" name="clientName" required><br>
+            
+                    <label for="clientEmail">Email:</label>
+                    <input type="email" id="clientEmail" name="clientEmail" required><br>
+            
+                    <label for="address">Dirección de envío:</label>
+                    <input type="text" id="address" name="address" required><br>
+            
+                    <button type="submit">Finalizar Orden</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+</body>
+</html>
