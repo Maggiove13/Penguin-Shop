@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order a product</title>
+</head>
+<body>
+    <h1>Orden Creada Exitosamente</h1>
+        <p><strong>Producto:</strong> {{.order.ProductName}}</p>
+        <img src="{{.order.ProductImage}}" alt="{{.productName}}" width="100"><br>
+        <p><strong>Cantidad:</strong> {{.order.QuantityOrdered}}</p>
+        <p><strong>Cliente:</strong> {{.order.ClientName}}</p>
+        <p><strong>Email:</strong> {{.order.ClientEmail}}</p>
+        <p><strong>Dirección:</strong> {{.order.Address}}</p>
+        <p><strong>Estado:</strong> {{.order.Status}}</p>
+
+        <h2>Lista de Productos</h2>
+    <ul>
+        {{range .products}}
+            <li>{{.ProductName}} - {{.Price}}</li>
+        {{end}}
+
+    </ul>
+    <a href="/products">Volver a la lista de productos</a>
+</body>
+</html>
